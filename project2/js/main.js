@@ -124,7 +124,7 @@ d3.json('data/data.json').then((data) => {
 
 	d3.interval(() => {
 		dataIndex = (dataIndex + 1) % data.length;
-		// update(data[dataIndex])
+		update(data[dataIndex])
 	}, 200);
 
 	update(data[dataIndex]);

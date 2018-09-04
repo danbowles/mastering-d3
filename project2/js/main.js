@@ -4,7 +4,6 @@
 *    Project 2 - Gapminder Clone
 */
 
-const t = d3.transition().duration(10);
 const numberFormat = new Intl.NumberFormat('en-US').format;
 
 const height = 600;
@@ -66,7 +65,14 @@ gRoot.append('text')
   })
   .text('Life Expectancy');
 
+// Get Data
 d3.json('data/data.json').then((data) => {
+	// Store array of continents for color scale + legend
+	const continents = data[0].countries
+		.map((country) => country.continent)
+		.filter((item, idx, arr) => arr.indexOf(item) === idx);
+
+	// Set Scale Domains
 	yScale.domain(
 		d3.extent(
 			data.reduce((acc, { countries }) => {
@@ -75,6 +81,7 @@ d3.json('data/data.json').then((data) => {
 			.filter((item) => item)
 		)
 	);
+
   xScale.domain(
 		d3.extent(
 			data.reduce((acc, { countries }) => {
@@ -84,15 +91,7 @@ d3.json('data/data.json').then((data) => {
 		)
 	);
 
-	continentsScale.domain(
-		data[0].countries
-			.map((country) => country.continent)
-			.filter((item, idx, arr) => arr.indexOf(item) === idx)
-	);
-
-	console.log(data[0].countries
-		.map((country) => country.continent)
-		.filter((item, idx, arr) => arr.indexOf(item) === idx));
+	continentsScale.domain(continents);
 
   const yAxis = d3.axisLeft(yScale);
 	const xAxis = d3.axisBottom(xScale);
@@ -101,11 +100,31 @@ d3.json('data/data.json').then((data) => {
 	gXAxis.call(xAxis);
 	gYAxis.call(yAxis);
 
+	// Add Legend
+	const legend = gRoot.append('g')
+		.attr('transform', `translate(${innerWidth - margin.right}, ${innerHeight - 200})`);
+
+	continents.forEach((continent, i) => {
+		const legendRow = legend.append('g')
+			.attr('transform', `translate(0, ${i * 24})`);
+
+		legendRow.append('rect')
+			.attr('height', 12)
+			.attr('width', 12)
+			.attr('fill', continentsScale(continent));
+		legendRow.append('text')
+			.text(continent)
+			.attr('text-anchor', 'end')
+			.attr('class', 'continent')
+			.attr('x', -6)
+			.attr('y', 11)
+	})
+
 	let dataIndex = 0;
 
 	d3.interval(() => {
 		dataIndex = (dataIndex + 1) % data.length;
-		update(data[dataIndex])
+		// update(data[dataIndex])
 	}, 200);
 
 	update(data[dataIndex]);
@@ -131,7 +150,7 @@ function update(data) {
 		.append('circle')
 			.attr('fill', (d) => continentsScale(d.continent))
 		.merge(cCountries)
-			.transition(t)
+			.transition()
 			.attrs({
 				cx: (d) => xScale(d.income),
 				cy: (d) => yScale(d.life_exp),

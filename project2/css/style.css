@@ -12,3 +12,14 @@
 	height: 60px;
 	padding: 5px 0px;
 }
+
+circle {
+	stroke: #333;
+}
+
+.year-text {
+	fill: #CCC;
+	font-size: 5em;
+	font-weight: bold;
+	letter-spacing: 0.5px;
+}

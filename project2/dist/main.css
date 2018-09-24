@@ -1,0 +1,25 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400);
+:root {
+  --color-white: white;
+  --color-red: red;
+  --color-header: gray;
+}
+:root {
+  --color-lavendar: #6C4D96;
+  --color-ship-cove: #6D93BA;
+  --gradient-header: linear-gradient(
+    to bottom right,
+    var(--color-ship-cove), 
+    var(--color-lavendar)
+  );
+}
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 0;
+}
+@media (max-width: 30em) {
+  body {
+    background: red;
+  }
+}
+

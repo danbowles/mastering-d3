@@ -8,12 +8,14 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Custom styling -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tooltip.css">
 </head>
 
 <body>
+    <div id="app"></div>
     <nav class="navbar navbar-default">
         <div class="container">
-            <a class="navbar-brand" href="#"><img id="logo" src="img/logo.png"></a>      
+            <!-- <a class="navbar-brand" href="#"><img id="logo" src="img/logo.png"></a>       -->
         </div>
     </nav>
 
@@ -22,6 +24,13 @@
         <div class="row">
             <div id="chart-area"></div>  
         </div>
+        <div class="row">
+            <input id="yearRange" type="range" step="1" value="0" />
+        </div>
+        <div class="row">
+            <button class="play-pause">Pause</button>
+            <button class="reset">Reset</button>
+        </div>
     </div>
 
 <!-- External JS libraries -->
@@ -29,8 +38,10 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/d3.min.js"></script>
 <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js"></script>
 <!-- Custom JS -->
-<script src="js/main.js"></script>
+<!-- <script src="js/main.js"></script> -->
+<script src="dist/main.js"></script>
 
 </body>
 </html>

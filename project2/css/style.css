@@ -27,3 +27,7 @@ circle, rect {
 	font-weight: bold;
 	letter-spacing: 0.5px;
 }
+
+.legend-row {
+	cursor: pointer;
+}

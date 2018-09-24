@@ -1,0 +1,9 @@
+:root {
+  --color-lavendar: #6C4D96;
+  --color-ship-cove: #6D93BA;
+  --gradient-header: linear-gradient(
+    to bottom right,
+    var(--color-ship-cove), 
+    var(--color-lavendar)
+  );
+}

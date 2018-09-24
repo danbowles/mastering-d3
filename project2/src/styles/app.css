@@ -1,0 +1,17 @@
+/* @import 'custom-media.css'; */
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400');
+@import 'colors.css';
+@import 'gradients.css';
+
+@custom-media --small-viewport max-width(100px);
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 0;
+}
+
+@media (--small-viewport) {
+  body {
+    background: red;
+  }
+}
